@@ -38,6 +38,12 @@ public class Player implements Comparable<Player> {
 
     @Override
     public int compareTo(Player o) {
-        return 0;
+        if (this.getStrength() < o.getStrength()) {
+            return 1;
+        } else if (this.getStrength() > o.getStrength()) {
+            return 2;
+        } else {
+            return 0;
+        }
     }
 }

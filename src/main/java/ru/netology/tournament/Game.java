@@ -6,29 +6,31 @@ public class Game {
 
     private ArrayList<Player> playersList = new ArrayList<>();
 
-    private void register (Player player){
+    public void register (Player player){
        playersList.add(player);
     }
 
-    private Player findByName(String name){
+    public Player findByName(String name){
         for(Player player : playersList) {
-
+            if (player.getName() == name) {
+                return player;
+            }
         }
         return null;
     }
 
 
-    public void round (String playerName1, String playerName2){
-        if(!playersList.contains(playerName1)) {
-            throw new NotRegisteredException("Player" + playerName1 + "is not registered");
+    public int round (String playerName1, String playerName2){
+        Player player1 = findByName(playerName1);
+        Player player2 = findByName(playerName2);
 
-            else if (!playersList.contains(playerName2)) {
-                    throw new NotRegisteredException("Player" + playerName2 + "is not registered");
-                }
-                else {
+        if (player1 == null) {
+            throw new NotRegisteredException("Player " + playerName1 + " is not registered");
+        }
 
-                }
-
-            }
+        if (player2 == null) {
+            throw new NotRegisteredException("Player " + playerName2 + " is not registered");
+        }
+        return player1.compareTo(player2);
         }
 }
